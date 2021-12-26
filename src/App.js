@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
 import Edit from './pages/edit';
 function App() {
-  
 
   return (
     <div className="App pt-3 pb-3">

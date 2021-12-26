@@ -14,7 +14,7 @@ export default function ItemTemplate({ item, handleDelete }) {
       <div onClick={() => handleClick()} style={{cursor: 'copy'}}>
         <h4>{item.attributes.name}</h4>
         <p>{item.attributes.content}</p>
-        <TimeAgo date={item.attributes.created_at} />
+        <TimeAgo className='text-muted' date={item.attributes.created_at} style={{fontSize: '0.7rem'}} />
       </div>
       <hr />
       <Link className='btn btn-sm btn-primary ' to={`/templates/${item.id}/edit`}>Edit</Link>
