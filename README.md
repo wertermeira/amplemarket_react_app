@@ -1,7 +1,7 @@
 # AmpleMarket React.js
 
 ## instructions
-First change file env.sample to env.development.local \
+First rename file env.sample to env.development.local \
 local: http://localhost:3000 \
 production: https://werter-amplemarket-react.herokuapp.com/
 
