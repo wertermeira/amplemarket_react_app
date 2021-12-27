@@ -5,6 +5,7 @@ import api from '../services/api';
 
 export default function Home() {
   const [templates, setTemplates] = useState([]);
+  const [loading, setLoading] = useState(true);
   const addTemplate = (template) => {
     setTemplates([template, ...templates]);
   };
@@ -12,7 +13,10 @@ export default function Home() {
   useEffect(() => {
     api
     .get('/templates')
-    .then((response) => { setTemplates(response.data.data) })
+    .then((response) => {
+      setTemplates(response.data.data) 
+      setLoading(false);
+    })
     .catch((error) => { console.log(error) });
   }, []);
 
@@ -27,11 +31,26 @@ export default function Home() {
     }
   };
 
+  const List = () => {
+    if (loading) {
+      return (
+        <h3 className='text-center'>Loading...</h3>
+      )
+    }
+    else {
+      return (
+        <div>
+          { templates.length > 0 && <ListTemplate templates={templates} handleDelete={handleDelete} />  }
+          { templates.length === 0 && <h3 className="text-center">No templates found</h3> }
+        </div>
+      )
+    }
+  }
+
   return (
     <div className="Home">
       <CreateTemplate addTemplate={addTemplate} />
-      { templates.length > 0 && <ListTemplate templates={templates} handleDelete={handleDelete} />  }
-      { templates.length === 0 && <h3 className="text-center">No templates found</h3> }
+      <List />
     </div>
   );
 }
