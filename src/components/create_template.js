@@ -8,15 +8,19 @@ export default function CreateTemplate ({addTemplate}) {
     name: "",
     content: ""
   });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSubmit = (event) => {
+    setButtonDisabled(true);
     event.preventDefault();
     try {
       api.post('/templates', template).then((response) => { addTemplate(response.data.data) });
       document.querySelectorAll('input');
       handleResetForm();
+      setButtonDisabled(false);
     } catch (error) {
       console.error(error);
+      setButtonDisabled(false);
     };
   };
 
@@ -38,7 +42,7 @@ export default function CreateTemplate ({addTemplate}) {
   return (
     <div className="CreateTemplate mb-3">
       <h3 className="text-center">Create template</h3>
-      <FormTemplate template={template} handleSubmit={handleSubmit} handleChange={handleChange} />
+      <FormTemplate template={template} handleSubmit={handleSubmit} handleChange={handleChange} buttonDisabled={buttonDisabled} />
     </div>
   )
 }

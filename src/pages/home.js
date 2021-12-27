@@ -17,7 +17,9 @@ export default function Home() {
       setTemplates(response.data.data) 
       setLoading(false);
     })
-    .catch((error) => { console.log(error) });
+    .catch((error) => {
+      console.log(error);
+    });
   }, []);
 
   const handleDelete = (id) => {

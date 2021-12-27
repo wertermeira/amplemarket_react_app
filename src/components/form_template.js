@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function FormTemplate({template, handleSubmit, handleChange}) {
+export default function FormTemplate({template, handleSubmit, handleChange, buttonDisabled}) {
   const { name, content } = template;
   
   return (
@@ -12,7 +12,7 @@ export default function FormTemplate({template, handleSubmit, handleChange}) {
         <Form.Group controlId="content" className="mb-3">
           <Form.Control as="textarea" rows={3} type="text" placeholder="Content" name="content" value={content} onChange={handleChange} required />
         </Form.Group>
-        <Button variant="success" className="btn btn-sm" type="submit">
+        <Button variant="success" disabled={buttonDisabled} className="btn btn-sm" type="submit">
           Save
         </Button>
       </Form>
